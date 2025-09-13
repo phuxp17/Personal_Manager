@@ -1,0 +1,4 @@
+Tạo database:personal_manager
+Tạo project springboot trên start.spring.io  hoặc tạo new project với Intellij
+#Mail Sender
+-Sử dụng smtp của Brevo
