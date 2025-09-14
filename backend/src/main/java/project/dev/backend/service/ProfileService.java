@@ -1,6 +1,7 @@
 package project.dev.backend.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,13 +28,16 @@ public class ProfileService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
+    @Value("${backend.url}")
+    private String backendUrl;
+
     // Đăng ký tài khoản
     public ProfileDTO registerProfile(ProfileDTO profileDTO){
         Profile newProfile = toEntity(profileDTO);
         newProfile.setActivationToken(UUID.randomUUID().toString());
         newProfile = profileRepository.save(newProfile);
         // Gửi activation email
-        String activationLink = "http://localhost:8080/api/v1/activate?token=" + newProfile.getActivationToken();
+        String activationLink = backendUrl + "/api/v1/activate?token=" + newProfile.getActivationToken();
         String subject = "Kích hoạt tài khoản Personal Manager";
         String body = "Nhấn vào đường link để kích hoạt tài khoản của bạn: "+ activationLink;
         emailService.sendEmail(newProfile.getEmail(), subject, body);
