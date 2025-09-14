@@ -2,3 +2,9 @@ Tạo database:personal_manager
 Tạo project springboot trên start.spring.io  hoặc tạo new project với Intellij
 #Mail Sender
 -Sử dụng smtp của Brevo
+
+
+
+____Frontend______
+Sử dụng react+vite+tailwindcss
++npm i axios react-router-dom lucide-react moment recharts emoji-picker-react react-hot-toast
